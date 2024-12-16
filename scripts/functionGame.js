@@ -38,6 +38,9 @@ function time_blue() {
 function contador_red() {
   i_red += 1;
   document.getElementById("gols_red").innerHTML = `Gols: ${i_red}`
+  if (i_red == 10) {
+    document.getElementById("mensagem_red").innerHTML = '<div class="mensagens">Você pontuou 10 vezes :D</div>'
+  }
 }
 
 /**
@@ -46,6 +49,9 @@ function contador_red() {
 function contador_blue() {
   i_blue += 1;
   document.getElementById("gols_blue").innerHTML = `Gols: ${i_blue}`
+  if (i_blue == 10) {
+    document.getElementById("mensagem_blue").innerHTML = '<div class="mensagens">Você pontuou 10 vezes ou mais :D</div>'
+  }
 }
 
 /**
@@ -61,7 +67,7 @@ function start(){
       random(0 + size, width - size),
       random(0 + size, height - size),
       velocidade,
-      random(-7, 7),
+      random(velocidade*-0.35, velocidade*0.35),
       "red",
       size
     );
@@ -76,7 +82,7 @@ function start(){
       random(0 + size, width - size),
       random(0 + size, height - size),
       velocidade,
-      random(-7, 7),
+      random(velocidade*-0.35, velocidade*0.35),
       "blue",
       size
     );
@@ -85,12 +91,19 @@ function start(){
 }
 
 /**
- * Fum
+ * Função responsável por resetar o jogo.
  */
 function reset() {
   balls.length = balls.length - balls.length;
   team_red.h = 100;
   team_blue.h = 100;
+  
+  i_red = 0
+  i_blue = 0
+  
+  
+  document.getElementById("mensagem_red").innerHTML = ""
+  document.getElementById("mensagem_blue").innerHTML = ""
   document.getElementById("gols_red").innerHTML = `Gols: 0`
   document.getElementById("gols_blue").innerHTML = `Gols: 0`
 }
