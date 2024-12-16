@@ -1,6 +1,20 @@
-import { canvas, ctx, width, height } from "./main.js";
+import { ctx, width, height } from "./main.js";
+import { contador_red, contador_blue } from "./functionGame.js";
 
+/**
+ * A classe Ball é responsável por criar as bolas.
+ */
 class Ball {
+
+    /**
+   * Cria a bola
+   * @param {*} x Cordenada da bola
+   * @param {*} y Cordenada da bola
+   * @param {*} velX Velocidade que se locomove na horizontal
+   * @param {*} velY Velocidade que se locomove na vertical
+   * @param {*} color Cor da bola
+   * @param {*} size Tamanho do raio da bola
+   */
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
@@ -10,6 +24,9 @@ class Ball {
     this.size = size;
   }
 
+   /**
+   * Desenhe a bola na tela
+   */
   draw() {
     ctx.beginPath();
     ctx.fillStyle = this.color;
@@ -17,6 +34,9 @@ class Ball {
     ctx.fill();
   }
 
+  /**
+   * Atualiza a posição da bola
+   */
   update() {
     if (this.x + this.size >= width) {
       this.velX = -Math.abs(this.velX);
@@ -38,20 +58,25 @@ class Ball {
     this.y += this.velY;
   }
 
+    /**
+   * Detecta se a bola atingiu o alvo
+   * @param {*} goal1 Primeiro gol
+   * @param {*} goal2 Segundo gol
+   */
   collisionDetect(goal1, goal2) {
     if (
       this.x - this.size <  goal1.x + 1  && 
       (this.y - this.size > goal1.y && this.y < goal1.y + goal1.h) &&
       this.color !== goal1.color
     ){
-      console.log("gol")
+      contador_blue()
     }
 
     if (this.x - this.size >  goal2.x && 
       (this.y - this.size > goal2.y && this.y < goal1.y + goal1.h ) &&
       this.color !== goal2.color
     ){
-      console.log("gol")
+      contador_red()
     }
   }
 }
