@@ -1,4 +1,4 @@
-import { time_red, time_blue, start } from "./functionGame.js"
+import { time_red, time_blue, start, reset } from "./functionGame.js"
 import { Team } from "./team.js";
 
 // Events
@@ -6,10 +6,12 @@ import { Team } from "./team.js";
 const button_red = document.querySelector("#time_red")
 const button_blue = document.querySelector("#time_blue")
 const button_start = document.querySelector("#start")
+const button_reset = document.querySelector("#reset")
 
 button_red.addEventListener("click", () => time_red())
 button_blue.addEventListener("click", () => time_blue())
 button_start.addEventListener("click", () => start())
+button_reset.addEventListener("click", () => reset())
 
 // set up canvas
 
@@ -24,7 +26,7 @@ const height = (canvas.height = window.innerHeight);
 let team_red = new Team(0, height/2 - 50, 30, 100, "red")
 let team_blue = new Team(width - 30, height/2 - 50, 30, 100, "blue")
 
-const balls = [];
+let balls = [];
 
 // Function Loop
 

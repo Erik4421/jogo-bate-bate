@@ -84,4 +84,15 @@ function start(){
   }  
 }
 
-export {time_red, time_blue, contador_red, contador_blue, start}
+/**
+ * Fum
+ */
+function reset() {
+  balls.length = balls.length - balls.length;
+  team_red.h = 100;
+  team_blue.h = 100;
+  document.getElementById("gols_red").innerHTML = `Gols: 0`
+  document.getElementById("gols_blue").innerHTML = `Gols: 0`
+}
+
+export {time_red, time_blue, contador_red, contador_blue, start, reset}
